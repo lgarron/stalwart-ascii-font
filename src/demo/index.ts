@@ -13,7 +13,13 @@ const copiedElem = document.querySelector<HTMLSpanElement>("#copied")!;
 
 function update() {
   const mono = monoElem.checked;
-  outElem.value = generateStalwartText(inElem.value, { mono });
+  try {
+    outElem.value = generateStalwartText(inElem.value, { mono });
+    outElem.classList.remove("error");
+  } catch (error) {
+    outElem.value = error;
+    outElem.classList.add("error");
+  }
 }
 
 inElem.addEventListener("input", update);

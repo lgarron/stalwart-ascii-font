@@ -33,3 +33,7 @@ body {
 body > a {
   text-align: center;
 }
+
+.error {
+  background: rgba(255, 0, 0, 0.2);
+}
