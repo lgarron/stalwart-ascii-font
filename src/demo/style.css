@@ -15,9 +15,10 @@ body {
 }
 
 @media (prefers-color-scheme: dark) {
-  html, textarea {
-    background: #000D;
-    color: #EEE;
+  html,
+  textarea {
+    background: #000d;
+    color: #eee;
   }
 
   a {
