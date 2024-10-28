@@ -5,6 +5,10 @@ build: dist/stalwart-ascii-font.json
 dist/stalwart-ascii-font.json: script/build.ts src/characters.txt
 	bun run script/build.ts
 
+.PHONY: dev-demo
+dev-demo: build
+	bun run script/dev-demo.ts
+
 .PHONY: setup
 setup:
 	bun install --frozen-lockfile
