@@ -1,9 +1,8 @@
 import { readFile } from "node:fs/promises";
 import type { ReadLine } from "node:readline";
 import { createInterface } from "node:readline/promises";
-import { stdin } from "bun";
 
-const CHAR_EX = 4;
+const CHAR_HEIGHT_EX = 4;
 
 const FONT_DATA: Partial<
   Record<
@@ -30,7 +29,7 @@ function processLine(
   handleOutputLine: (metaLine: string) => void,
   options?: Options,
 ) {
-  const currentOutputLines = new Array(CHAR_EX).fill([]);
+  const currentOutputLines = new Array(CHAR_HEIGHT_EX).fill([]);
   for (let char of line) {
     if (options?.autoUppercase ?? true) {
       char = char.toUpperCase();
@@ -41,7 +40,7 @@ function processLine(
     }
     const charLines =
       options?.mono && record.mono ? record.mono : record.regular;
-    for (let i = 0; i < CHAR_EX; i++) {
+    for (let i = 0; i < CHAR_HEIGHT_EX; i++) {
       currentOutputLines[i] += charLines[i];
     }
   }

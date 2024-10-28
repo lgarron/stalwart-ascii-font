@@ -1,4 +1,8 @@
+import { exit } from "node:process";
 import { file, write } from "bun";
+
+const CHAR_WIDTH_CH = 6;
+const CHAR_HEIGHT_EX = 4;
 
 const MONO_SPEC_SUFFIX = " (mono)";
 
@@ -42,15 +46,41 @@ type CharacterRecord = {
   mono?: string[];
 };
 
+let exitCode = 0;
+
 const partialData: Partial<Record<string, Partial<CharacterRecord>>> = {};
 for (const chunk of chunks(characterData.split("\n").values(), 5)) {
-  const [[char, ...specChars], ...lines] = chunk;
-  const { mono } = parseSpec(specChars.join(""), char);
+  const [charSpec, ...lines] = chunk;
+  const [char, ...specChars] = charSpec;
+  const spec = specChars.join("");
+  const { mono } = parseSpec(spec, char);
   const field = mono ? "mono" : "regular";
   // TODO: validate lines are the same length, and match appropriate mono/non-mono widths.
 
+  const firstLineWidth = lines[0].length;
+  for (const line of lines.slice(1)) {
+    if (line.length !== firstLineWidth) {
+      console.error(
+        `Not all lines are the same length for char: \`${charSpec}\``,
+      );
+      exitCode = 1;
+      break;
+    }
+  }
+
+  if (mono && firstLineWidth !== CHAR_WIDTH_CH) {
+    console.error(
+      `Mono character \`${charSpec}\` has an invalid char width: ${firstLineWidth}`,
+    );
+    exitCode = 1;
+  }
+
   // biome-ignore lint/suspicious/noAssignInExpressions: DRY pattern.
   (partialData[char] ??= {})[field] = lines;
+}
+
+if (exitCode !== 0) {
+  exit(exitCode);
 }
 
 for (const [key, value] of Object.entries(partialData)) {
