@@ -2,6 +2,8 @@
 
 Fonts with a height (`ex`) of 4 rows and a width (`ch`) of 6 columns.
 
+Try it out at: <https://garron.net/code/stalwart/>
+
 ## Regular
 
 ````text-sample-regular
