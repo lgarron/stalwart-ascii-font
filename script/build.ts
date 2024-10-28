@@ -82,7 +82,12 @@ for (const chunk of chunks(characterData.split("\n").values(), 5)) {
   }
 
   // biome-ignore lint/suspicious/noAssignInExpressions: DRY pattern.
-  (partialData[char] ??= {})[field] = lines;
+  const entry = (partialData[char] ??= {});
+  if (field in entry) {
+    console.error(`Duplicate entry: \`${charSpec}\``);
+    exitCode = 1;
+  }
+  entry[field] = lines;
 }
 
 if (exitCode !== 0) {
