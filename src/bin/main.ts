@@ -1,7 +1,7 @@
 #!/usr/bin/env bun
 
 import { printStalwartText } from "../lib";
-import { printStalwartTextFromStdin } from "../lib/process";
+import { printStalwartTextFromStdin } from "../lib/stdin";
 
 import {
   binary,
