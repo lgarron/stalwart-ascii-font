@@ -24,3 +24,12 @@ sample:
 .PHONY: sample-mono
 sample-mono:
 	bun run "script/sample.ts" --mono
+
+.PHONY: clean
+clean:
+	rm -rf ./dist
+
+.PHONY: reset
+reset: clean
+	rm -rf ./node_modules
+
