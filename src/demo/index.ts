@@ -11,10 +11,10 @@ const copyElem = document.querySelector<HTMLButtonElement>("#copy")!;
 // biome-ignore lint/style/noNonNullAssertion: frontend
 const copiedElem = document.querySelector<HTMLSpanElement>("#copied")!;
 
-function update() {
+function update(text?: string) {
   const mono = monoElem.checked;
   try {
-    outElem.value = generateStalwartText(inElem.value, { mono });
+    outElem.value = generateStalwartText(text ?? inElem.value, { mono });
     outElem.classList.remove("error");
   } catch (error) {
     outElem.value = error;
@@ -22,11 +22,13 @@ function update() {
   }
 }
 
-inElem.addEventListener("input", update);
-inElem.addEventListener("change", update);
-monoElem.addEventListener("input", update);
-monoElem.addEventListener("change", update);
-update();
+inElem.addEventListener("input", () => update());
+inElem.addEventListener("change", () => update());
+monoElem.addEventListener("input", () => update());
+monoElem.addEventListener("change", () => update());
+
+update(`output will
+appear here!`);
 
 copyElem.addEventListener("click", async () => {
   navigator.clipboard.writeText(outElem.value);
