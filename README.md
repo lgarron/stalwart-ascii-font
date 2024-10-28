@@ -43,3 +43,4 @@ Fonts with a height (`ex`) of 4 rows and a width (`ch`) of 6 columns.
 │ ╰╯ │╭╯  ╰╮│  ──┤├──  │╰──╮ │├──\ ││ ⊂⊃ │ / /  │ ⊂⊃ │├─── │
 ╰────╯╰────╯╰────╯╰────╯   ╰─╯╰────╯╰────╯╰──╯  ╰────╯╰────╯
 ```
+# stalwart-ascii-font
