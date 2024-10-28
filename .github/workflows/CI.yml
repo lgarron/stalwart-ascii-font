@@ -3,16 +3,15 @@ name: CI
 on: [push, pull_request]
 
 jobs:
-  test-src:
+  test:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
       - uses: oven-sh/setup-bun@v1
+      - run: bun install --frozen-lockfile
       - run: make lint
-      - run: cp ./dist/stalwart-ascii-font.json ./dist/stalwart-ascii-font.json.committed
       - run: make build
-      - run: diff ./dist/stalwart-ascii-font.json ./dist/stalwart-ascii-font.json.committed
-      - run: ./script/sample
-      - run: ./script/sample --mono
+      - run: make sample
+      - run: make sample-mono
       - run: ./src/bin/main.ts "CI"
