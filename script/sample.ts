@@ -2,16 +2,7 @@
 
 import { printStalwartText } from "../src/lib";
 
-import {
-  binary,
-  string as cmdString,
-  command,
-  flag,
-  positional,
-  run,
-} from "cmd-ts";
-
-import { exit } from "node:process";
+import { binary, command, flag, run } from "cmd-ts";
 
 const app = command({
   name: "stalwart",
