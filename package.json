@@ -1,6 +1,6 @@
 {
   "name": "stalwart-ascii-font",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "main": "src/lib/main.ts",
   "type": "module",
   "bin": {
@@ -14,5 +14,8 @@
   "dependencies": {
     "yargs": "^17.7.2"
   },
-  "files": ["./dist/", "./src/lib/"]
+  "files": [
+    "./dist/",
+    "./src/lib/"
+  ]
 }
