@@ -8,6 +8,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
+    "@cubing/deploy": "^0.1.4",
     "@types/bun": "latest",
     "barely-a-dev-server": "^0.6.2",
     "readme-cli-help": "^0.1.9"
@@ -15,8 +16,8 @@
   "dependencies": {
     "cmd-ts": "^0.13.0"
   },
-  "files": [
-    "./dist/",
-    "./src/lib/"
-  ]
+  "files": ["./dist/stalwart-ascii-font/", "./src/lib/"],
+  "@cubing/deploy": {
+    "https://garron.net/code/stalwart/": {}
+  }
 }

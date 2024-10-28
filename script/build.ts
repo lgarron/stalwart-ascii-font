@@ -100,12 +100,12 @@ const data = partialData as Partial<Record<string, CharacterRecord>>;
 console.log(data);
 
 await write(
-  file("./dist/stalwart-ascii-font.json"),
+  file("./dist/stalwart-ascii-font/stalwart-ascii-font.json"),
   JSON.stringify(data, null, "  "),
 );
 
 await write(
-  file("./dist/stalwart-ascii-font.ts"),
+  file("./dist/stalwart-ascii-font/stalwart-ascii-font.ts"),
   `export const stalwartCharacterData: Partial<
   Record<
     string,

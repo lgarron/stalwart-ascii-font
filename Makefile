@@ -6,9 +6,17 @@ build: dist/stalwart-ascii-font.json
 dist/stalwart-ascii-font.json: script/build.ts src/characters.txt
 	bun run script/build.ts
 
-.PHONY: dev-demo
-dev-demo: build
-	bun run script/dev-demo.ts
+.PHONY: demo-dev
+demo-dev: build
+	bun run script/demo/dev.ts
+
+.PHONY: demo-build
+demo-build: build
+	bun run script/demo/build.ts
+
+.PHONY: deploy
+deploy: demo-build
+	bun x @cubing/deploy
 
 .PHONY: setup
 setup:

@@ -1,4 +1,4 @@
-import { stalwartCharacterData } from "../../dist/stalwart-ascii-font";
+import { stalwartCharacterData } from "../../dist/stalwart-ascii-font/stalwart-ascii-font";
 
 const CHAR_HEIGHT_EX = 4;
 
