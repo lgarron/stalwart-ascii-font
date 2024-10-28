@@ -43,3 +43,19 @@ Fonts with a height (`ex`) of 4 rows and a width (`ch`) of 6 columns.
 │ /╯ │╭╯  ╰╮│  ──┤├──  │╰──╮ │├──\ ││ ⊂⊃ │ / /  │ ⊂⊃ │├─── │
 ╰────╯╰────╯╰────╯╰────╯   ╰─╯╰────╯╰────╯╰──╯  ╰────╯╰────╯
 ```
+
+## Generate text
+
+Requires runtime support for TypeScript, so only works with `bun` at the moment:
+
+```shell
+bun x stalwart-ascii-font "Hello World!"
+bun x stalwart-ascii-font --mono "meow"
+```
+
+TypeScript API:
+
+```ts
+function generateStalwartText(text: string, options?: Options);
+function printStalwartText(text: string, options?: Options);
+```
