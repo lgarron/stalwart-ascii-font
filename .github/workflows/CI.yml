@@ -10,8 +10,8 @@ jobs:
       - uses: actions/checkout@v4
       - uses: oven-sh/setup-bun@v1
       - run: make setup
-      - run: make lint
       - run: make build
+      - run: make lint
       - run: make sample
       - run: make sample-mono
       - run: ./src/bin/main.ts "CI"
