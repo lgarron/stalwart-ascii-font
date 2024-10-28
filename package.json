@@ -4,7 +4,7 @@
   "main": "src/lib/index.ts",
   "type": "module",
   "bin": {
-    "stalwart": "./src/bin/main.ts"
+    "stalwart": "src/bin/main.ts"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
