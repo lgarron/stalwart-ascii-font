@@ -1,6 +1,5 @@
 #!/usr/bin/env bun
 
-import { file } from "bun";
 import { default as yargs } from "yargs";
 import { hideBin } from "yargs/helpers";
 import { printStalwartText } from "../lib";

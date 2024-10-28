@@ -13,3 +13,11 @@ format:
 .PHONY: publish
 publish:
 	npm publish
+
+.PHONY: sample
+sample:
+	bun run "script/sample.ts"
+
+.PHONY: sample-mono
+sample-mono:
+	bun run "script/sample.ts" --mono

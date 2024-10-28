@@ -1,5 +1,4 @@
 import { readFile } from "node:fs/promises";
-import { file } from "bun";
 
 const CHAR_EX = 4;
 
