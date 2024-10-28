@@ -47,7 +47,7 @@ body > a {
 }
 
 textarea {
-  min-width: calc(100% );
+  min-width: calc(100%);
   resize: none;
   box-sizing: border-box;
   font-family: monospace;
