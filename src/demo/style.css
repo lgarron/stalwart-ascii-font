@@ -40,6 +40,7 @@ body > a {
 
 .header {
   overflow: hidden;
+  font-family: monospace;
 }
 
 .output-wrapper {
