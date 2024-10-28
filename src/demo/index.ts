@@ -14,7 +14,10 @@ const copiedElem = document.querySelector<HTMLSpanElement>("#copied")!;
 function update(text?: string) {
   const mono = monoElem.checked;
   try {
-    outElem.value = generateStalwartText(text ?? inElem.value, { mono });
+    const stalwartText = generateStalwartText(text ?? inElem.value, { mono });
+    outElem.value = stalwartText;
+    outElem.cols = Math.max(stalwartText.split("\n")[0].length, 50);
+    outElem.rows = Math.max(stalwartText.split("\n").length, 8);
     outElem.classList.remove("error");
   } catch (error) {
     outElem.value = error;

@@ -38,6 +38,17 @@ body > a {
   background: rgba(255, 0, 0, 0.2);
 }
 
+.header {
+  overflow: hidden;
+}
+
+.output-wrapper {
+  overflow: scroll;
+}
+
 textarea {
+  min-width: calc(100% );
+  resize: none;
+  box-sizing: border-box;
   font-family: monospace;
 }
