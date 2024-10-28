@@ -2,7 +2,10 @@ import { file, write } from "bun";
 
 const MONO_SPEC_SUFFIX = " (mono)";
 
-const characters = await file("./src/characters.txt").text();
+let characterData = await file("./src/characters.txt").text();
+if (characterData.endsWith("\n")) {
+  characterData = characterData.slice(0, -1);
+}
 
 function chunks(source: Iterator<string>, chunkSize: number): string[][] {
   let currentChunk: string[] = [];
@@ -40,7 +43,7 @@ type CharacterRecord = {
 };
 
 const partialData: Partial<Record<string, Partial<CharacterRecord>>> = {};
-for (const chunk of chunks(characters.trim().split("\n").values(), 5)) {
+for (const chunk of chunks(characterData.split("\n").values(), 5)) {
   const [[char, ...specChars], ...lines] = chunk;
   const { mono } = parseSpec(specChars.join(""), char);
   const field = mono ? "mono" : "regular";
