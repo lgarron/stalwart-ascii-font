@@ -8,11 +8,10 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
-    "@types/bun": "latest",
-    "@types/yargs": "^17.0.33"
+    "@types/bun": "latest"
   },
   "dependencies": {
-    "yargs": "^17.7.2"
+    "cmd-ts": "^0.13.0"
   },
   "files": [
     "./dist/",

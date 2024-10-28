@@ -1,25 +1,35 @@
-import { default as yargs } from "yargs";
-import { hideBin } from "yargs/helpers";
+#!/usr/bin/env bun
+
 import { printStalwartText } from "../src/lib";
 
-const args = await yargs(
-  // TODO: `hideBin` just shows `bun` in `bun`.
-  hideBin(process.argv),
-)
-  .option("mono", {
-    describe: "Monospace.",
-    default: false,
-    type: "boolean",
-    alias: "m",
-  })
-  .version(false) // TODO: why doesn't `yargs` get the right version in `bun` or for the `dist` bin?
-  .strictOptions().argv;
+import {
+  binary,
+  string as cmdString,
+  command,
+  flag,
+  positional,
+  run,
+} from "cmd-ts";
 
-const { mono } = args;
-printStalwartText(
-  `ABCDEFGHIJ
+import { exit } from "node:process";
+
+const app = command({
+  name: "stalwart",
+  args: {
+    mono: flag({
+      long: "mono",
+      description: "Monospace",
+    }),
+  },
+  handler: async ({ mono }) => {
+    printStalwartText(
+      `ABCDEFGHIJ
 KLMNOPQRST
 UVWXYZ
 0123456789`,
-  { mono },
-);
+      { mono },
+    );
+  },
+});
+
+run(binary(app), process.argv);

@@ -9,6 +9,9 @@ dist/stalwart-ascii-font.json: script/build.ts src/characters.txt
 setup:
 	bun install --frozen-lockfile
 
+.PHONY: test
+test: setup lint build sample sample-mono
+
 .PHONY: lint
 lint:
 	bun x @biomejs/biome check ./script ./src
