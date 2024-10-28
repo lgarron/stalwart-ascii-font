@@ -2,9 +2,8 @@ import { exit } from "node:process";
 import { file, write } from "bun";
 
 const CHAR_WIDTH_CH = 6;
-const CHAR_HEIGHT_EX = 4;
 
-const MONO_SPEC_SUFFIX = " (mono)";
+const REGULAR_SPEC_SUFFIX = " (regular)";
 
 let characterData = await file("./src/characters.txt").text();
 if (characterData.endsWith("\n")) {
@@ -27,13 +26,13 @@ function chunks(source: Iterator<string>, chunkSize: number): string[][] {
   }
 }
 
-function parseSpec(spec: string, char: string): { mono: boolean } {
+function parseSpec(spec: string, char: string): { regular: boolean } {
   switch (spec) {
-    case MONO_SPEC_SUFFIX: {
-      return { mono: true };
+    case REGULAR_SPEC_SUFFIX: {
+      return { regular: true };
     }
     case "": {
-      return { mono: false };
+      return { regular: false };
     }
     default:
       throw new Error(`Invalid spec for char \`${char}\`: \`${spec}\``);
@@ -42,8 +41,8 @@ function parseSpec(spec: string, char: string): { mono: boolean } {
 
 // Entries are string arrays instead of strings because this makes the JSON file inspectable by eye.
 type CharacterRecord = {
-  regular: string[];
-  mono?: string[];
+  mono: string[];
+  regular?: string[];
 };
 
 let exitCode = 0;
@@ -53,8 +52,8 @@ for (const chunk of chunks(characterData.split("\n").values(), 5)) {
   const [charSpec, ...lines] = chunk;
   const [char, ...specChars] = charSpec;
   const spec = specChars.join("");
-  const { mono } = parseSpec(spec, char);
-  const field = mono ? "mono" : "regular";
+  const { regular } = parseSpec(spec, char);
+  const field = regular ? "regular" : "mono";
   // TODO: validate lines are the same length, and match appropriate mono/non-mono widths.
 
   const firstLineWidth = lines[0].length;
@@ -68,7 +67,14 @@ for (const chunk of chunks(characterData.split("\n").values(), 5)) {
     }
   }
 
-  if (mono && firstLineWidth !== CHAR_WIDTH_CH) {
+  if (regular && firstLineWidth === CHAR_WIDTH_CH) {
+    console.error(
+      `Regular character \`${charSpec}\` matches monospace char width. This is probably an accident, and not currently supported.`,
+    );
+    exitCode = 1;
+  }
+
+  if (!regular && firstLineWidth !== CHAR_WIDTH_CH) {
     console.error(
       `Mono character \`${charSpec}\` has an invalid char width: ${firstLineWidth}`,
     );
@@ -84,7 +90,7 @@ if (exitCode !== 0) {
 }
 
 for (const [key, value] of Object.entries(partialData)) {
-  if (!("regular" in value)) {
+  if (!("mono" in value)) {
     throw new Error(`Character is missing \`regular\` field: \`${key}\``);
   }
 }

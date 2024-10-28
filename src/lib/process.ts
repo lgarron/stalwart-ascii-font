@@ -38,8 +38,7 @@ function processLine(
     if (!record) {
       throw new Error(`Character is not supported: \`${char}\``);
     }
-    const charLines =
-      options?.mono && record.mono ? record.mono : record.regular;
+    const charLines = (!options?.mono && record.regular) || record.mono;
     for (let i = 0; i < CHAR_HEIGHT_EX; i++) {
       currentOutputLines[i] += charLines[i];
     }
