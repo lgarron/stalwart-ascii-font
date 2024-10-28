@@ -1,0 +1,17 @@
+{
+  "name": "stalwart-ascii-font",
+  "version": "0.1.0",
+  "main": "src/bin/main.ts",
+  "type": "module",
+  "bin": {
+    "stalwart": "./src/bin/main.ts"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@types/bun": "latest",
+    "@types/yargs": "^17.0.33"
+  },
+  "dependencies": {
+    "yargs": "^17.7.2"
+  }
+}
