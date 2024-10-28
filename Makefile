@@ -1,5 +1,8 @@
 .PHONY: build
-build:
+build: dist/stalwart-ascii-font.json
+	bun run script/build.ts
+
+dist/stalwart-ascii-font.json: script/build.ts src/characters.txt
 	bun run script/build.ts
 
 .PHONY: lint
