@@ -58,4 +58,9 @@ TypeScript API:
 ```ts
 function generateStalwartText(text: string, options?: Options);
 function printStalwartText(text: string, options?: Options);
+
+interface Options {
+  mono?: boolean;
+  autoUppercase?: boolean;
+}
 ```
