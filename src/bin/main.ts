@@ -47,4 +47,4 @@ const app = command({
   },
 });
 
-run(binary(app), process.argv);
+await run(binary(app), process.argv);
