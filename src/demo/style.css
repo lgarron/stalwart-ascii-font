@@ -44,7 +44,7 @@ body > a {
 }
 
 .output-wrapper {
-  overflow: scroll;
+  overflow: auto;
 }
 
 textarea {
