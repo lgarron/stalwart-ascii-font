@@ -1,5 +1,5 @@
 .PHONY: build
-build: dist/stalwart-ascii-font.json
+build: setup dist/stalwart-ascii-font.json
 	bun x readme-cli-help --fence "text-sample-regular" "bun run ./script/sample.ts"
 	bun x readme-cli-help --fence "text-sample-mono" "bun run ./script/sample.ts --mono"
 
@@ -23,31 +23,31 @@ deploy: demo-build
 
 .PHONY: setup
 setup:
-	bun install --frozen-lockfile
+	bun install --no-save
 
 .PHONY: test
 test: setup lint build sample sample-mono
 
 .PHONY: lint
-lint:
+lint: setup
 	bun x @biomejs/biome check ./script ./src
 	bun x readme-cli-help --check-only --fence "text-sample-regular" "bun run ./script/sample.ts"
 	bun x readme-cli-help --check-only --fence "text-sample-mono" "bun run ./script/sample.ts --mono"
 
 .PHONY: format
-format:
+format: setup
 	bun x @biomejs/biome format --write ./script ./src
 
 .PHONY: publish
-publish:
+publish: setup
 	npm publish
 
 .PHONY: sample
-sample:
+sample: setup
 	bun run "script/sample.ts"
 
 .PHONY: sample-mono
-sample-mono:
+sample-mono: setup
 	bun run "script/sample.ts" --mono
 
 .PHONY: clean
