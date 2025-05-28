@@ -11,7 +11,7 @@
     "@cubing/deploy": "v0.2.2",
     "@types/bun": "latest",
     "barely-a-dev-server": "^0.6.2",
-    "readme-cli-help": "^0.1.9"
+    "readme-cli-help": "v0.1.10"
   },
   "dependencies": {
     "cmd-ts": "^0.13.0"

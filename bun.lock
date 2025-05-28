@@ -11,7 +11,7 @@
         "@cubing/deploy": "v0.2.2",
         "@types/bun": "latest",
         "barely-a-dev-server": "^0.6.2",
-        "readme-cli-help": "^0.1.9",
+        "readme-cli-help": "v0.1.10",
       },
     },
   },
@@ -118,7 +118,7 @@
 
     "printable-shell-command": ["printable-shell-command@0.1.0-pre3", "", { "optionalDependencies": { "@types/bun": "^1.2.11", "@types/node": "^22.15.3" } }, "sha512-8/fSZ3piSi3o5gjJjbb7lK1hIz0lxMkWKpKl4nus3AUzS0bzosL48xTEtshy9TCMofw5GhT1dfCQNbY0bRwrng=="],
 
-    "readme-cli-help": ["readme-cli-help@0.1.9", "", { "peerDependencies": { "typescript": "^5.0.0" }, "bin": { "readme-cli-help": "main.ts" } }, "sha512-FxpG7JVmzFdbHFI/NKfIzOdQfXixeervYICgUMAbtQMsqDdz2H4VfjDvxQq+6mbKDnnvV4XcgrVayIXfDdGQQQ=="],
+    "readme-cli-help": ["readme-cli-help@0.1.10", "", { "peerDependencies": { "typescript": "^5.0.0" }, "bin": { "readme-cli-help": "main.ts" } }, "sha512-HBu72nVFqoLIBtEQJo1bC+z9zPqz1D84pPSS9mjGPS35AFAoW0Qif7TJVotIpToWVwmjljF0EXeo9Qgy3KbxxQ=="],
 
     "strip-ansi": ["strip-ansi@6.0.1", "", { "dependencies": { "ansi-regex": "^5.0.1" } }, "sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A=="],
 
