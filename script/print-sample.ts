@@ -35,7 +35,8 @@ async function printSample({
     `ABCDEFGHIJ
 KLMNOPQRST
 UVWXYZ
-0123456789`,
+0123456789
+()[]{}`,
     { mono },
   );
 }
