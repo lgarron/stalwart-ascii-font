@@ -20,7 +20,7 @@ function update(text?: string) {
     outElem.rows = Math.max(stalwartText.split("\n").length, 8);
     outElem.classList.remove("error");
   } catch (error) {
-    outElem.value = error;
+    outElem.value = error as { toString(): string } as string;
     outElem.classList.add("error");
   }
 }

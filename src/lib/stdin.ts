@@ -10,10 +10,5 @@ export async function printStalwartTextFromStdin(
     input: process.stdin,
   });
 
-  await processTextAsync(
-    // biome-ignore lint/suspicious/noExplicitAny: Type wrangling
-    readline as any as { [Symbol.iterator](): Iterator<string> },
-    console.log,
-    options,
-  );
+  await processTextAsync(readline, console.log, options);
 }

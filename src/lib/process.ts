@@ -40,7 +40,7 @@ export function processTextSync(
 }
 
 export async function processTextAsync(
-  source: string[] | { [Symbol.iterator](): Iterator<string> },
+  source: AsyncIterable<string>,
   handleOutputLine: (metaLine: string) => void,
   options?: Options,
 ): Promise<void> {

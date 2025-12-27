@@ -6,7 +6,7 @@ Try it out at: <https://garron.net/code/stalwart/>
 
 ## Regular
 
-````text-sample-regular
+````text sample-regular
 ╭────╮╭───╮ ╭────╮╭───╮ ╭────╮╭────╮╭────╮╭─╮╭─╮╭───╮  ╭─╮
 │ ⊂⊃ ││ ⊂⊃ ││ ╭──╯│ ╭╮ ││ ──┬╯│ ──┬╯│ ╭──┤│ ╰╯ │╰╮ ╭╯  │ │
 │ ╭╮ ││ ⊂⊃ ││ ╰──╮│ ╰╯ ││ ──┴╮│ ╭─╯ │ ╰╯ ││ ╭╮ │╭╯ ╰╮╭─│ │
@@ -27,8 +27,7 @@ Try it out at: <https://garron.net/code/stalwart/>
 
 ## Mono
 
-<!-- bun run ./script/sample.ts -->
-````text-sample-mono
+````text sample-mono
 ╭────╮╭───╮ ╭────╮╭───╮ ╭────╮╭────╮╭────╮╭─╮╭─╮╭────╮   ╭─╮
 │ ⊂⊃ ││ ⊂⊃ ││ ╭──╯│ ╭╮ ││ ──┬╯│ ──┬╯│ ╭──┤│ ╰╯ │╰─╮╭─╯   │ │
 │ ╭╮ ││ ⊂⊃ ││ ╰──╮│ ╰╯ ││ ──┴╮│ ╭─╯ │ ╰╯ ││ ╭╮ │╭─╯╰─╮╭──│ │
@@ -52,8 +51,8 @@ Try it out at: <https://garron.net/code/stalwart/>
 Requires runtime support for TypeScript, so only works with `bun` at the moment:
 
 ```shell
-bun x stalwart-ascii-font "Hello World!"
-bun x stalwart-ascii-font --mono "meow"
+bun x stalwart-ascii-font -- "Hello World!"
+bun x stalwart-ascii-font --mono -- "meow"
 ```
 
 TypeScript API:

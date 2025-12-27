@@ -1,0 +1,17 @@
+{
+  "$schema": "../node_modules/readme-cli-help/schema.json",
+  "files": {
+    "./README.md": {
+      "codeFences": [
+        {
+          "infoString": "text sample-regular",
+          "command": ["./script/print-sample.ts"]
+        },
+        {
+          "infoString": "text sample-mono",
+          "command": ["./script/print-sample.ts", "--mono"]
+        }
+      ]
+    }
+  }
+}

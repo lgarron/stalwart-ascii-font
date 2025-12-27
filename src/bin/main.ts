@@ -1,50 +1,75 @@
-#!/usr/bin/env bun
+#!/usr/bin/env -S bun run --
 
+import { basename } from "node:path";
+import { argv } from "node:process";
+import {
+  argument,
+  constant,
+  flag,
+  merge,
+  message,
+  object,
+  option,
+  or,
+  string,
+} from "@optique/core";
+import { run } from "@optique/run";
+import { version as VERSION } from "../../package.json";
 import { printStalwartText } from "../lib";
 import { printStalwartTextFromStdin } from "../lib/stdin";
 
-import {
-  binary,
-  string as cmdString,
-  command,
-  flag,
-  positional,
-  run,
-} from "cmd-ts";
+function parseArgs() {
+  return run(
+    merge(
+      object({
+        mono: option("--mono"),
+        noAutoUppercase: option("--no-auto-uppercase", {
+          description: message`Don't automatically uppercase (error on lowercase letters).`,
+        }),
+      }),
+      or(
+        object({ textSource: constant("stdin"), stdin: flag("--stdin") }),
+        object({
+          textSource: constant("positional"),
+          text: argument(string()),
+        }),
+      ),
+    ),
+    {
+      programName: basename(argv[1]),
+      description: message`The commandline tool of the future!`,
+      help: "option",
+      completion: {
+        mode: "option",
+        name: "plural",
+      },
+      version: {
+        mode: "option",
+        value: VERSION,
+      },
+    },
+  );
+}
 
-import { exit } from "node:process";
-
-const app = command({
-  name: "stalwart",
-  args: {
-    mono: flag({
-      long: "mono",
-      description: "Monospace",
-    }),
-    noAutoUppercase: flag({
-      long: "no-auto-uppercase",
-      description: "Don't automatically uppercase",
-    }),
-    stdin: flag({
-      long: "stdin",
-      description: "Read from stdin. Pass `-` as text to use this.",
-    }),
-    text: positional({ type: cmdString, displayName: "Text" }),
-  },
-  handler: async ({ mono, text, stdin, noAutoUppercase }) => {
-    if (stdin) {
-      if (text !== "-") {
-        console.error("Text must be set to `-` when reading from stdin.");
-        exit(1);
-      }
+async function print(args: ReturnType<typeof parseArgs>): Promise<void> {
+  const { mono, noAutoUppercase, textSource } = args;
+  switch (textSource) {
+    case "stdin": {
       await printStalwartTextFromStdin();
-      exit(0);
+      break;
     }
-    printStalwartText(text as string, {
-      mono: mono,
-      autoUppercase: !noAutoUppercase,
-    });
-  },
-});
+    case "positional": {
+      printStalwartText(args.text, {
+        mono: mono,
+        autoUppercase: !noAutoUppercase,
+      });
+      break;
+    }
+    default:
+      throw new Error("Internal error: Invalid text source.") as never;
+  }
+}
 
-await run(binary(app), process.argv);
+if (import.meta.main) {
+  await print(parseArgs());
+}

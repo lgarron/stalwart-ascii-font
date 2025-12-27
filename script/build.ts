@@ -95,6 +95,9 @@ if (exitCode !== 0) {
 }
 
 for (const [key, value] of Object.entries(partialData)) {
+  if (!value) {
+    throw new Error(`Character is missing data: \`${key}\``);
+  }
   if (!("mono" in value)) {
     throw new Error(`Character is missing \`regular\` field: \`${key}\``);
   }

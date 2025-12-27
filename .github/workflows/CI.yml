@@ -12,6 +12,8 @@ jobs:
       - run: make setup
       - run: make build
       - run: make lint
-      - run: make sample
-      - run: make sample-mono
+      - run: make test-bin
+      - run: make print-sample
+      - run: make print-sample-mono
       - run: ./src/bin/main.ts "CI"
+      - run: make check-package.json
