@@ -1,6 +1,6 @@
 {
   "name": "stalwart-ascii-font",
-  "version": "0.3.4",
+  "version": "0.4.0",
   "description": "Fonts with a height (`ex`) of 4 rows and a width (`ch`) of 6 columns.",
   "author": "Lucas Garron <lucas@garron.net>",
   "license": "MIT",
