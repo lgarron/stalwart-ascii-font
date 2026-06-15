@@ -25,7 +25,7 @@ deploy: build-demo
 
 .PHONY: setup
 setup:
-	bun install --no-save
+	bun install --frozen-lockfile
 
 .PHONY: test
 test: setup lint build test-bin print-sample print-sample-mono
