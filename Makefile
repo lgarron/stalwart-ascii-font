@@ -69,10 +69,12 @@ print-sample: build
 print-sample-mono: build
 	bun run "script/print-sample.ts" --mono
 
+RM_RF = bun -e 'process.argv.slice(1).map(p => process.getBuiltinModule("node:fs").rmSync(p, {recursive: true, force: true, maxRetries: 5}))' --
+
 .PHONY: clean
 clean:
-	rm -rf ./dist
+	${RM_RF} ./dist/
 
 .PHONY: reset
 reset: clean
-	rm -rf ./node_modules
+	${RM_RF} ./node_modules/
