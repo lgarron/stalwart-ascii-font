@@ -40,8 +40,9 @@ lint-typescript:
 	bun x -- bun-dx --package @typescript/native-preview tsgo -- --project ./tsconfig.json
 
 .PHONY: format
-format: setup
+format: setup build-dist
 	bun x -- bun-dx --package @biomejs/biome biome -- format --write ./script ./src
+	bun x -- bun-dx --package readme-cli-help readme-cli-help -- update
 
 .PHONY: check-package.json
 check-package.json: build
