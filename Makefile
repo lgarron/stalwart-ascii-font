@@ -55,7 +55,7 @@ publish: setup
 	npm publish
 
 .PHONY: test-bin
-test-bin:
+test-bin: build-dist
 	'src/bin/main.ts' --help
 	'src/bin/main.ts' --version
 	'src/bin/main.ts' -- "HELLO WORLD"
