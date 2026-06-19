@@ -39,7 +39,7 @@
     "@types/node": "^25.0.3",
     "barely-a-dev-server": "^0.8.1",
     "bun-dx": "^0.1.4",
-    "path-class": "^0.12.2",
+    "path-class": ">=0.16.0",
     "readme-cli-help": ">=0.4.10",
     "typescript": "^5.9.3"
   },
