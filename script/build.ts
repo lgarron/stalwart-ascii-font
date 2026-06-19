@@ -1,11 +1,11 @@
 import { exit } from "node:process";
-import { file, write } from "bun";
+import { Path } from "path-class";
 
 const CHAR_WIDTH_CH = 6;
 
 const REGULAR_SPEC_SUFFIX = " (regular)";
 
-let characterData = await file("./src/characters.txt").text();
+let characterData = await new Path("./src/characters.txt").readText();
 if (characterData.endsWith("\n")) {
   characterData = characterData.slice(0, -1);
 }
@@ -107,13 +107,11 @@ const data = partialData as Partial<Record<string, CharacterRecord>>;
 
 console.log(data);
 
-await write(
-  file("./dist/stalwart-ascii-font/stalwart-ascii-font.json"),
-  JSON.stringify(data, null, "  "),
+await new Path("./dist/stalwart-ascii-font/stalwart-ascii-font.json").writeJSON(
+  data,
 );
 
-await write(
-  file("./dist/stalwart-ascii-font/stalwart-ascii-font.ts"),
+await new Path("./dist/stalwart-ascii-font/stalwart-ascii-font.ts").write(
   `export const stalwartCharacterData: Partial<
   Record<
     string,

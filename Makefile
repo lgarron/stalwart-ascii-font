@@ -36,8 +36,8 @@ lint: setup lint-typescript
 	bun x -- bun-dx --package readme-cli-help readme-cli-help -- check
 
 .PHONY: lint-typescript
-lint-typescript: build-dist
-	bun x -- bun-dx --package typescript tsc -- --project ./tsconfig.json
+lint-typescript:
+	bun x -- bun-dx --package @typescript/native-preview tsgo -- --project ./tsconfig.json
 
 .PHONY: format
 format: setup
